@@ -3329,14 +3329,14 @@ public final class Settings {
          */
         public static final String LONG_PRESS_KILL_DELAY = "long_press_kill_delay";
 
-         /**
-          * Volume keys control cursor in text fields (default is 0)
-          * 0 - Disabled
-          * 1 - Volume up/down moves cursor left/right
-          * 2 - Volume up/down moves cursor right/left
-          * @hide
-          */
-         public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+        /**
+         * Volume keys control cursor in text fields (default is 0)
+         * 0 - Disabled
+         * 1 - Volume up/down moves cursor left/right
+         * 2 - Volume up/down moves cursor right/left
+         * @hide
+         */
+        public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
 
         /**
          * Status bar carrier label
@@ -3345,6 +3345,9 @@ public final class Settings {
         public static final String STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
 
         /** Network speed indicator
+         * 0 = disabled
+         * 1 = show bits per second
+         * 2 = show Bytes per second
          * @hide
          */
         public static final String STATUS_BAR_TRAFFIC = "status_bar_traffic";
