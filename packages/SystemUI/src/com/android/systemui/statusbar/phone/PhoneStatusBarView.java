@@ -205,6 +205,7 @@ public class PhoneStatusBarView extends PanelBar {
         super.panelExpansionChanged(panel, frac, expanded);
         mScrimController.setPanelExpansion(frac);
         mBar.updateCarrierLabelVisibility(false);
+        mBar.setBlur(frac);
     }
 
     @Override
