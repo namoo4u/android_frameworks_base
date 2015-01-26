@@ -1905,7 +1905,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             upgradeVersion = 117;
         }
 
-       if (upgradeVersion == 118) {
+       if (upgradeVersion == 117) {
             db.beginTransaction();
             SQLiteStatement stmt = null;
             try {
