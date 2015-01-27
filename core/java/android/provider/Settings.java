@@ -3345,6 +3345,12 @@ public final class Settings {
         public static final String STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
 
         /**
+         * Show mobile/wifi activity icons in statusbar bar
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_DATA_ACTIVITY = "status_bar_show_data_activity";
+
+        /**
          * Network traffic indicator, goes from least to greatest significant bitwise
          * 0 = Display up-stream traffic if set
          * 1 = Display down-stream traffic if set
