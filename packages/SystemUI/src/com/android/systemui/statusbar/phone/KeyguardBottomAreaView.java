@@ -35,6 +35,7 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.telecom.TelecomManager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -251,6 +252,11 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         mPhoneStatusBar = phoneStatusBar;
     }
 
+    private boolean lockScreenShortcutsEnabled() {
+        return Settings.Secure.getInt(mContext.getContentResolver(),
+            Settings.Secure.ENABLE_LOCKSCREEN_TARGETS, 1) == 1;
+    }
+
     private Intent getCameraIntent() {
         KeyguardUpdateMonitor updateMonitor = KeyguardUpdateMonitor.getInstance(mContext);
         boolean currentUserHasTrust = updateMonitor.getUserHasTrust(
@@ -265,15 +271,15 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
                 mLockPatternUtils.getCurrentUser());
         boolean visible = !isCameraDisabledByDpm() && resolved != null
                 && getResources().getBoolean(R.bool.config_keyguardShowCameraAffordance);
-        visible = visible || mShortcutHelper.isTargetCustom(
-                LockscreenShortcutsHelper.Shortcuts.RIGHT_SHORTCUT);
+        visible = (visible || mShortcutHelper.isTargetCustom(
+                LockscreenShortcutsHelper.Shortcuts.RIGHT_SHORTCUT)) && lockScreenShortcutsEnabled();
         mCameraImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private void updatePhoneVisibility() {
         boolean visible = isPhoneVisible();
-        visible = visible || mShortcutHelper.isTargetCustom(
-                LockscreenShortcutsHelper.Shortcuts.LEFT_SHORTCUT);
+        visible = (visible || mShortcutHelper.isTargetCustom(
+                LockscreenShortcutsHelper.Shortcuts.LEFT_SHORTCUT)) && lockScreenShortcutsEnabled();
         mPhoneImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
@@ -411,6 +417,9 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         if (changedView == this && visibility == VISIBLE) {
             updateLockIcon();
             updateCameraVisibility();
+            if (isPhoneVisible()) {
+                updatePhoneVisibility();
+            }
         }
     }
 
