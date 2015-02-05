@@ -4593,12 +4593,6 @@ public final class Settings {
         public static final String INSTALL_NON_MARKET_APPS = "install_non_market_apps";
 
         /**
-         * Enable launch actions for left/right lockscreen targets
-         * @hide
-         */
-        public static final String ENABLE_LOCKSCREEN_TARGETS = "enable_lockscreen_targets";
-
-        /**
          * Launch actions for left/right lockscreen targets
          * @hide
          */
